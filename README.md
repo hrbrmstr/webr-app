@@ -5,9 +5,10 @@ Let’s walk through how to set up a [~minimal HTML/JS/CS + WebR-powered
 “app”](https://rud.is/webr-app/) on a server you own. This will be
 vanilla JS (i.e. no React/Vue/npm/bundler) you can hack on at-will.
 
-> NOTE: WebR will not work in GitHub Pages b/c Microsoft is a horrible
-> company. GitHub may eventually support the JS workers on GitHub pages,
-> but it still won’t stop Microsoft from being a horrible company.
+In the `docs/` directory you’ll see an example of using this in GH
+Pages.Here it is live:
+<https://hrbrmstr.github.io/webr-app/index.html%22>. Info on what you
+need to do for that is below.
 
 TL;DR: You can find the source to the app and track changes to it [over
 on GitHub](https://github.com/hrbrmstr/webr-app/tree/batman) if you want
@@ -304,6 +305,36 @@ in this case, give us something back. We can keep chaining async
 function calls, but — if we need to make sure the code runs and/or we
 get data back — we will eventually need to keep our promise to do so;
 hence, `Promise.resolve`.
+
+## Serving WebR From GitHub Pages
+
+The `docs/` directory in the repo shows a working version on GH pages.
+
+`main.js` needs a few tweaks:
+
+``` javascript
+// This will use Posit's CDN
+
+import('https://webr.r-wasm.org/latest/webr.mjs').then( // this wraps the main app code
+    async ({ WebR }) => {
+        
+        globalThis.webR = new WebR({
+            SW_URL: "/webr-app/"            // 👈🏼 needs to be your GHP main path
+        });
+        await globalThis.webR.init();
+
+        const timerEnd = performance.now();
+        console.timeEnd('Execution Time');
+
+        document.getElementById('loading').innerText = `WebR Loaded! (${format(",.2r")((timerEnd - timerStart) / 1000)} seconds)`;
+
+        const mtcars = await HelpR.getDataFrame(globalThis.webR, "mtcars");
+        console.table(mtcars);
+        HelpR.simpleDataFrameTable("#tbl", mtcars);
+        
+  }
+);
+```
 
 ## Moar To Come
 
