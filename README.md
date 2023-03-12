@@ -51,7 +51,7 @@ Also, this `Cache-Control` heading appears to help keep things under
 `/webr` in the browser cache longer, and will also let any ISP or
 enterprise proxies keep the files in their caches as well:
 
-\``Cache-Control: public, max-age=604800`
+    Cache-Control: public, max-age=604800
 
 and, in nginx:
 

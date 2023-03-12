@@ -41,7 +41,7 @@ For good measure (and in case I move things around), I stick those headers on my
 
 Also, this `Cache-Control` heading appears to help keep things under `/webr` in the browser cache longer, and will also let any ISP or enterprise proxies keep the files in their caches as well:
 
-````
+```
 Cache-Control: public, max-age=604800
 ```
 
