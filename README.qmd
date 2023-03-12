@@ -7,6 +7,8 @@ Let's walk through how to set up a [~minimal HTML/JS/CS + WebR-powered "app"](ht
 
 >NOTE: WebR will not work in GitHub Pages b/c Microsoft is a horrible company. GitHub may eventually support the JS workers on GitHub pages, but it still won't stop Microsoft from being a horrible company.
 
+TL;DR: You can find the source to the app and track changes to it [over on GitHub](https://github.com/hrbrmstr/webr-app/tree/batman) if you want to jump right in.
+
 ## Getting Your Server Set Up
 
 I'll try to keep updating this with newer WebR releases. Current version is 0.1.0 and you can grab that from: <https://github.com/r-wasm/webr/releases/download/v0.1.0/webr-0.1.0.tar.gz>.
@@ -36,6 +38,22 @@ location ^~ /webr {
 YMMV.
 
 For good measure (and in case I move things around), I stick those headers on my any app dir that will use WebR. I don't use them server-wide, though.
+
+Also, this `Cache-Control` heading appears to help keep things under `/webr` in the browser cache longer, and will also let any ISP or enterprise proxies keep the files in their caches as well:
+
+````
+Cache-Control: public, max-age=604800
+```
+
+and, in nginx:
+
+```
+location ^~ /webr {
+  add_header "Cache-Control" "public, max-age=604800";
+  add_header "Cross-Origin-Opener-Policy" "same-origin";
+  add_header "Cross-Origin-Embedder-Policy" "require-corp";
+}
+```
 
 ### And They Call It a MIME. A MIME!
 
@@ -238,4 +256,6 @@ We explicitly use `await` for when we _really_ need the code to run and, in this
 
 ## Moar To Come
 
-Please hit up [this terribly coded dashboard app](https://rud.is/webr-dash/no-dplyr.html) to see some fancier use. I'll be converting that to modules and expandin git a bit. 
+Please hit up [this terribly coded dashboard
+app](https://rud.is/webr-dash/no-dplyr.html) to see some fancier use.
+I’ll be converting that to modules and expanding git a bit.

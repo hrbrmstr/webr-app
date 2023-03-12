@@ -9,6 +9,10 @@ vanilla JS (i.e. no React/Vue/npm/bundler) you can hack on at-will.
 > company. GitHub may eventually support the JS workers on GitHub pages,
 > but it still won’t stop Microsoft from being a horrible company.
 
+TL;DR: You can find the source to the app and track changes to it [over
+on GitHub](https://github.com/hrbrmstr/webr-app/tree/batman) if you want
+to jump right in.
+
 ## Getting Your Server Set Up
 
 I’ll try to keep updating this with newer WebR releases. Current version
@@ -42,6 +46,20 @@ YMMV.
 For good measure (and in case I move things around), I stick those
 headers on my any app dir that will use WebR. I don’t use them
 server-wide, though.
+
+Also, this `Cache-Control` heading appears to help keep things under
+`/webr` in the browser cache longer, and will also let any ISP or
+enterprise proxies keep the files in their caches as well:
+
+\``Cache-Control: public, max-age=604800`
+
+and, in nginx:
+
+    location ^~ /webr {
+      add_header "Cache-Control" "public, max-age=604800";
+      add_header "Cross-Origin-Opener-Policy" "same-origin";
+      add_header "Cross-Origin-Embedder-Policy" "require-corp";
+    }
 
 ### And They Call It a MIME. A MIME!
 
@@ -291,4 +309,4 @@ hence, `Promise.resolve`.
 
 Please hit up [this terribly coded dashboard
 app](https://rud.is/webr-dash/no-dplyr.html) to see some fancier use.
-I’ll be converting that to modules and expandin git a bit.
+I’ll be converting that to modules and expanding git a bit.
