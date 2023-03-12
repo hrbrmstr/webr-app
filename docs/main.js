@@ -14,7 +14,9 @@ const timerStart = performance.now();
 import('https://webr.r-wasm.org/latest/webr.mjs').then(
 	async ({ WebR }) => {
 		
-    globalThis.webR  = new WebR();
+		globalThis.webR = new WebR({
+			SW_URL: "/"
+		});
 		await globalThis.webR.init();
 
 		// WebR is ready to use. So, brag about it!
