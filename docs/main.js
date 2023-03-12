@@ -15,7 +15,7 @@ import('https://webr.r-wasm.org/latest/webr.mjs').then(
 	async ({ WebR }) => {
 		
 		globalThis.webR = new WebR({
-			SW_URL: "/"
+			SW_URL: "/webr-app/"
 		});
 		await globalThis.webR.init();
 
