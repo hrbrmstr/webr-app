@@ -6,9 +6,8 @@ Let’s walk through how to set up a [~minimal HTML/JS/CS + WebR-powered
 vanilla JS (i.e. no React/Vue/npm/bundler) you can hack on at-will.
 
 In the `docs/` directory you’ll see an example of using this in GH
-Pages.Here it is live:
-<https://hrbrmstr.github.io/webr-app/index.html%22>. Info on what you
-need to do for that is below.
+Pages.Here it is live: <https://hrbrmstr.github.io/webr-app/index.html>.
+Info on what you need to do for that is below.
 
 TL;DR: You can find the source to the app and track changes to it [over
 on GitHub](https://github.com/hrbrmstr/webr-app/tree/batman) if you want
