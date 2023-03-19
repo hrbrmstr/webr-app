@@ -8,7 +8,7 @@ import { format } from "https://cdn.skypack.dev/d3-format@3";
 import * as HelpR from './modules/webr-helpers.js'; // WebR-specific helpers
 // import * as App from './modules/webr-app.js'; // our app's functions
 
-console.time('Execution Time'); // keeps on tickin'
+console.time('Execution Time'); // keeps on tickin'  
 const timerStart = performance.now();
 
 import('https://webr.r-wasm.org/latest/webr.mjs').then(
